@@ -1,6 +1,5 @@
-# web_of_science_journals_api
+# Web of Science Journals API JavaScript Client
 
-WebOfScienceJournalsApi - JavaScript client for web_of_science_journals_api
 This API provides journal-level metadata and metrics for all journals in the Journal Citation Reports™ covered in the Web of Science Core Collection, including the Journal Impact Factor™ and other new metrics. Integrate journal data into your internal systems or retrieve journal indicators for bibliometrics studies.
 
 ## Resources
@@ -50,7 +49,7 @@ The API supports range filtering for Journal Impact Factor (*jif*) or Journal Im
 - ***gt*** (greater than): if a Journal Impact Factor (Percentile) is greater than a specific number.<br /> For example: for `jif=gt:5` the result will include journals with Journal Impact Factor = 5.001 and higher.<br /> Combinable with *lt* and *lte* operators
 - ***gte*** (greater than equal): if a Journal Impact Factor (Percentile) is greater than or equal to a specific number.<br /> For example: for `jif=gte:5` the result will include journals with Journal Impact Factor = 5.000 and higher.<br /> Combinable with *lt* and *lte* operators
 - ***lt*** (less than): if a Journal Impact Factor (Percentile) is less than a specific number.<br /> For example: for `jif=lt:5` the result will include journals with Journal Impact Factor = 4.999 and less.<br /> Combinable with *gt* and *gte* operators
-- ***gt*** (less than equal): if a Journal Impact Factor (Percentile) is less than a specific number.<br /> For example: for `jif=lte:5` the result will include journals with Journal Impact Factor = 5.000 and less.<br /> Combinable with *gt* and *gte* operators
+- ***lte*** (less than equal): if a Journal Impact Factor (Percentile) is less than a specific number.<br /> For example: for `jif=lte:5` the result will include journals with Journal Impact Factor = 5.000 and less.<br /> Combinable with *gt* and *gte* operators
 
 Use `AND` to combine two operators, e.g.,`jifPercentile=gte:50 AND lte:80` responses with all journals in a percentile range from 50% to 80% (both included).
 
@@ -151,11 +150,11 @@ npm run build
 
 #### git
 
-If the library is hosted at a git repository, e.g.https://github.com/GIT_USER_ID/GIT_REPO_ID
+If the library is hosted at a git repository, e.g.https://github.com/Clarivate-SAR/wosjournals_javascript_client
 then install it via:
 
 ```shell
-    npm install GIT_USER_ID/GIT_REPO_ID --save
+    npm install Clarivate-SAR/wosjournals_javascript_client --save
 ```
 
 ### For browser
@@ -300,6 +299,5 @@ Class | Method | HTTP request | Description
  - [WebOfScienceJournalsApi.SourceMetricsCitableItems](docs/SourceMetricsCitableItems.md)
 
 
-## Documentation for Authorization
-
-All endpoints do not require authorization.
+## Licence
+MIT
