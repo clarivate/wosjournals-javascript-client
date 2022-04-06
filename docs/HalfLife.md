@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.HalfLife
+# ClarivateWosJournalsJsClient.HalfLife
 
 ## Properties
 

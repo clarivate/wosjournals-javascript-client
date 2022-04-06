@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.RanksJif
+# ClarivateWosJournalsJsClient.RanksJif
 
 ## Properties
 

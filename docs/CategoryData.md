@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.CategoryData
+# ClarivateWosJournalsJsClient.CategoryData
 
 ## Properties
 

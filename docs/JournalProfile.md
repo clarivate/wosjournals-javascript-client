@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.JournalProfile
+# ClarivateWosJournalsJsClient.JournalProfile
 
 ## Properties
 

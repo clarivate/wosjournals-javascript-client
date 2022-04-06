@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.OpenAccess
+# ClarivateWosJournalsJsClient.OpenAccess
 
 ## Properties
 
