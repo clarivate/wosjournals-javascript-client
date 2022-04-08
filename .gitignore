@@ -32,5 +32,11 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-#ignore dist folder
-**/dist
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+**/out/
+
+**/bin/

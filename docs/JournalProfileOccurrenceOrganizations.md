@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.JournalProfileOccurrenceOrganizations
+# ClarivateWosJournalsJsClient.JournalProfileOccurrenceOrganizations
 
 ## Properties
 

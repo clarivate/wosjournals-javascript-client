@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.SearchMatch
+# ClarivateWosJournalsJsClient.SearchMatch
 
 ## Properties
 

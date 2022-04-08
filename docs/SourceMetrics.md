@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.SourceMetrics
+# ClarivateWosJournalsJsClient.SourceMetrics
 
 ## Properties
 

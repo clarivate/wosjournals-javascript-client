@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.Metadata
+# ClarivateWosJournalsJsClient.Metadata
 
 ## Properties
 

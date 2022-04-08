@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.CategoriesApi
+# ClarivateWosJournalsJsClient.CategoriesApi
 
 All URIs are relative to *http://wos-journals-snapshot.cortellis.int.clarivate.com*
 
@@ -23,9 +23,9 @@ The endpoint allows to search, filter, or browse across the Categories content. 
 ### Example
 
 ```javascript
-import WebOfScienceJournalsApi from 'web_of_science_journals_api';
+import ClarivateWosJournalsJsClient from 'clarivate-wos-journals-js-client';
 
-let apiInstance = new WebOfScienceJournalsApi.CategoriesApi();
+let apiInstance = new ClarivateWosJournalsJsClient.CategoriesApi();
 let opts = {
   'q': "q_example", // String | Free-text search by category name.  Search logic is described in the section [Search](#search).
   'edition': "edition_example", // String | Filter by Web of Sceince Citation Index. The following indexes (editions) are presented: - SCIE - Science Citation Index Expanded (ournals across more than 170 disciplines) - SSCI - Social Sciences Citation Index (journals across more than 50 social science disciplines)  Multiple values are allowed, separated by semicolon ( **;** )
@@ -78,9 +78,9 @@ The Cited Subject Category table lists journals that cite other journals in the 
 ### Example
 
 ```javascript
-import WebOfScienceJournalsApi from 'web_of_science_journals_api';
+import ClarivateWosJournalsJsClient from 'clarivate-wos-journals-js-client';
 
-let apiInstance = new WebOfScienceJournalsApi.CategoriesApi();
+let apiInstance = new ClarivateWosJournalsJsClient.CategoriesApi();
 let id = RU_SCIE; // String | Category ID
 let year = 2014; // Number | JCR Year (from 2003)
 let opts = {
@@ -131,9 +131,9 @@ Category Citing data contains:  - Cited **Journal** with the link to WoS Journal
 ### Example
 
 ```javascript
-import WebOfScienceJournalsApi from 'web_of_science_journals_api';
+import ClarivateWosJournalsJsClient from 'clarivate-wos-journals-js-client';
 
-let apiInstance = new WebOfScienceJournalsApi.CategoriesApi();
+let apiInstance = new ClarivateWosJournalsJsClient.CategoriesApi();
 let id = RU_SCIE; // String | Category ID
 let year = 2014; // Number | JCR Year (from 2003)
 let opts = {
@@ -184,9 +184,9 @@ The category profile provides a comprehensive overview, beginning in 2003, for e
 ### Example
 
 ```javascript
-import WebOfScienceJournalsApi from 'web_of_science_journals_api';
+import ClarivateWosJournalsJsClient from 'clarivate-wos-journals-js-client';
 
-let apiInstance = new WebOfScienceJournalsApi.CategoriesApi();
+let apiInstance = new ClarivateWosJournalsJsClient.CategoriesApi();
 let id = RU_SCIE; // String | Category ID, consisting of a two-letter category code and four-letter edition, separated by **_** (i.e., ***RZ_SSCI*** or ***IP_SCIE***)
 apiInstance.categoriesIdGet(id, (error, data, response) => {
   if (error) {
@@ -229,9 +229,9 @@ For each JCR year all metrics related to a subject category in the Journal Citat
 ### Example
 
 ```javascript
-import WebOfScienceJournalsApi from 'web_of_science_journals_api';
+import ClarivateWosJournalsJsClient from 'clarivate-wos-journals-js-client';
 
-let apiInstance = new WebOfScienceJournalsApi.CategoriesApi();
+let apiInstance = new ClarivateWosJournalsJsClient.CategoriesApi();
 let id = RU_SCIE; // String | Category ID
 let year = 2016; // Number | Category report year
 apiInstance.categoriesIdReportsYearYearGet(id, year, (error, data, response) => {

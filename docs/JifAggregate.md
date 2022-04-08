@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.JifAggregate
+# ClarivateWosJournalsJsClient.JifAggregate
 
 ## Properties
 

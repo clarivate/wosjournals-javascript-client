@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.InfluenceMetricsEigenFactor
+# ClarivateWosJournalsJsClient.InfluenceMetricsEigenFactor
 
 ## Properties
 
