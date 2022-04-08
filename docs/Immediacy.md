@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.Immediacy
+# ClarivateWosJournalsJsClient.Immediacy
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.CategoriesCitedHits
+# ClarivateWosJournalsJsClient.CategoriesCitedHits
 
 ## Properties
 

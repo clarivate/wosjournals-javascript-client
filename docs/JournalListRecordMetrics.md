@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.JournalListRecordMetrics
+# ClarivateWosJournalsJsClient.JournalListRecordMetrics
 
 ## Properties
 

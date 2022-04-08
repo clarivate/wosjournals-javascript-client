@@ -1,4 +1,4 @@
-# WebOfScienceJournalsApi.JournalProfileOccurrenceCountries
+# ClarivateWosJournalsJsClient.JournalProfileOccurrenceCountries
 
 ## Properties
 

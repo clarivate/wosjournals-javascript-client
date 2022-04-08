@@ -1,5 +1,6 @@
-# Web of Science Journals API JavaScript Client
+# clarivate-wos-journals-js-client
 
+ClarivateWosJournalsJsClient - JavaScript client for clarivate-wos-journals-js-client
 This API provides journal-level metadata and metrics for all journals in the Journal Citation Reports™ covered in the Web of Science Core Collection, including the Journal Impact Factor™ and other new metrics. Integrate journal data into your internal systems or retrieve journal indicators for bibliometrics studies.
 
 ## Resources
@@ -10,6 +11,8 @@ The API is available on the [Clarivate Developer Portal](https://developer.clari
 ## Credentials
 All requests require authentication with an API Key authentication flow. For more details, check the [Guide](https://developer.clarivate.com/help/api-access#key_access).
 
+## API Client Libraries
+The current languages/frameworks are supported: [Python](https://github.com/clarivate/wosjournals-python-client) | [Java](https://github.com/clarivate/wosjournals-java-client) | [Javascript](https://github.com/clarivate/wosjournals-javascript-client)
 
 ## Content
 You can learn more about content at [Journal Citation Reports™ Product page](https://clarivate.com/webofsciencegroup/solutions/journal-citation-reports/), or in the [documentation](http://jcr.help.clarivate.com/Content/home.htm).
@@ -35,7 +38,7 @@ The API supports several filters for Journals and Web of Science™ Categories, 
 There are two types of filters:
 
 - Filter by one or multiple **values**: *edition*, *categoryCode*, *jcrYear*, *jifQuartile*
-- Filter by **range**: *jif*, *jifPercentile*
+- Filter by **range**: *jif*, *jifPercentile*, *jci*, 
 
 ### Filter by values
 The filter name goes before the equals sign, followed by one or multiple filter values, separated by a semicolon, like `categoryCode=RZ;RU`. You can combine various filters with or without the search. Filters are separated by an ampersand (**&amp;**): `q=nature&categoryCode=RU;KM&jcrYear=2018`
@@ -113,7 +116,7 @@ To publish the library as a [npm](https://www.npmjs.com/), please follow the pro
 Then install it via:
 
 ```shell
-npm install web_of_science_journals_api --save
+npm install clarivate-wos-journals-js-client --save
 ```
 
 Finally, you need to build the module:
@@ -136,7 +139,7 @@ Next, [link](https://docs.npmjs.com/cli/link) it globally in npm with the follow
 npm link
 ```
 
-To use the link you just defined in your project, switch to the directory you want to use your web_of_science_journals_api from, and run:
+To use the link you just defined in your project, switch to the directory you want to use your clarivate-wos-journals-js-client from, and run:
 
 ```shell
 npm link /path/to/<JAVASCRIPT_CLIENT_DIR>
@@ -150,11 +153,11 @@ npm run build
 
 #### git
 
-If the library is hosted at a git repository, e.g.https://github.com/Clarivate-SAR/wosjournals_javascript_client
+If the library is hosted at a git repository, e.g.https://github.com/GIT_USER_ID/GIT_REPO_ID
 then install it via:
 
 ```shell
-    npm install Clarivate-SAR/wosjournals_javascript_client --save
+    npm install GIT_USER_ID/GIT_REPO_ID --save
 ```
 
 ### For browser
@@ -192,17 +195,14 @@ module: {
 Please follow the [installation](#installation) instruction and execute the following JS code:
 
 ```javascript
-var WebOfScienceJournalsApi = require('web_of_science_journals_api');
+var ClarivateWosJournalsJsClient = require('clarivate-wos-journals-js-client');
 
-var api = new WebOfScienceJournalsApi.CategoriesApi()
 
--- ************************* Place your token here 
-api.extraHeaderParams = {'X-ApiKey': 'your token goes here'};
-
+var api = new ClarivateWosJournalsJsClient.CategoriesApi()
 var opts = {
-  'q': "ANTHROPOLOGY", // {String} Free-text search by category name.  Search logic is described in the section [Search](#search).
-  'edition': "SSCI", // {String} Filter by Web of Sceince Citation Index. The following indexes (editions) are presented: - SCIE - Science Citation Index Expanded (ournals across more than 170 disciplines) - SSCI - Social Sciences Citation Index (journals across more than 50 social science disciplines)  Multiple values are allowed, separated by semicolon ( **;** )
-  'jcrYear': 2016, // {Number} Filter by Category Citation Report year (from 2003).  Only one value is allowed.
+  'q': "q_example", // {String} Free-text search by category name.  Search logic is described in the section [Search](#search).
+  'edition': "edition_example", // {String} Filter by Web of Sceince Citation Index. The following indexes (editions) are presented: - SCIE - Science Citation Index Expanded (ournals across more than 170 disciplines) - SSCI - Social Sciences Citation Index (journals across more than 50 social science disciplines)  Multiple values are allowed, separated by semicolon ( **;** )
+  'jcrYear': 56, // {Number} Filter by Category Citation Report year (from 2003).  Only one value is allowed.
   'page': 1, // {Number} Specifying a page to retrieve
   'limit': 10 // {Number} Number of returned results, ranging from 0 to 50
 };
@@ -210,10 +210,9 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully. Returned identifier: ' + data.hits[0].id);
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
-
 api.categoriesGet(opts, callback);
 
 ```
@@ -224,80 +223,94 @@ All URIs are relative to *http://wos-journals-snapshot.cortellis.int.clarivate.c
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*WebOfScienceJournalsApi.CategoriesApi* | [**categoriesGet**](docs/CategoriesApi.md#categoriesGet) | **GET** /categories | Search and filter across the journal categories
-*WebOfScienceJournalsApi.CategoriesApi* | [**categoriesIdCitedYearYearGet**](docs/CategoriesApi.md#categoriesIdCitedYearYearGet) | **GET** /categories/{id}/cited/year/{year} | Get journals that cite all journals in the category for the JCR year
-*WebOfScienceJournalsApi.CategoriesApi* | [**categoriesIdCitingYearYearGet**](docs/CategoriesApi.md#categoriesIdCitingYearYearGet) | **GET** /categories/{id}/citing/year/{year} | Get journals that were cited by all journals from the category for the JCR year
-*WebOfScienceJournalsApi.CategoriesApi* | [**categoriesIdGet**](docs/CategoriesApi.md#categoriesIdGet) | **GET** /categories/{id} | Get a category
-*WebOfScienceJournalsApi.CategoriesApi* | [**categoriesIdReportsYearYearGet**](docs/CategoriesApi.md#categoriesIdReportsYearYearGet) | **GET** /categories/{id}/reports/year/{year} | Get category metrics for a year
-*WebOfScienceJournalsApi.JournalsApi* | [**journalsGet**](docs/JournalsApi.md#journalsGet) | **GET** /journals | Search and filter across JCR Journals
-*WebOfScienceJournalsApi.JournalsApi* | [**journalsIdCitedYearYearGet**](docs/JournalsApi.md#journalsIdCitedYearYearGet) | **GET** /journals/{id}/cited/year/{year} | Get journals that cite the journal for the JCR year
-*WebOfScienceJournalsApi.JournalsApi* | [**journalsIdCitingYearYearGet**](docs/JournalsApi.md#journalsIdCitingYearYearGet) | **GET** /journals/{id}/citing/year/{year} | Get journals that were cited by the journal for the JCR year
-*WebOfScienceJournalsApi.JournalsApi* | [**journalsIdGet**](docs/JournalsApi.md#journalsIdGet) | **GET** /journals/{id} | Get journal by id
-*WebOfScienceJournalsApi.JournalsApi* | [**journalsIdReportsYearYearGet**](docs/JournalsApi.md#journalsIdReportsYearYearGet) | **GET** /journals/{id}/reports/year/{year} | Get journal metrics for a year
+*ClarivateWosJournalsJsClient.CategoriesApi* | [**categoriesGet**](docs/CategoriesApi.md#categoriesGet) | **GET** /categories | Search and filter across the journal categories
+*ClarivateWosJournalsJsClient.CategoriesApi* | [**categoriesIdCitedYearYearGet**](docs/CategoriesApi.md#categoriesIdCitedYearYearGet) | **GET** /categories/{id}/cited/year/{year} | Get journals that cite all journals in the category for the JCR year
+*ClarivateWosJournalsJsClient.CategoriesApi* | [**categoriesIdCitingYearYearGet**](docs/CategoriesApi.md#categoriesIdCitingYearYearGet) | **GET** /categories/{id}/citing/year/{year} | Get journals that were cited by all journals from the category for the JCR year
+*ClarivateWosJournalsJsClient.CategoriesApi* | [**categoriesIdGet**](docs/CategoriesApi.md#categoriesIdGet) | **GET** /categories/{id} | Get a category
+*ClarivateWosJournalsJsClient.CategoriesApi* | [**categoriesIdReportsYearYearGet**](docs/CategoriesApi.md#categoriesIdReportsYearYearGet) | **GET** /categories/{id}/reports/year/{year} | Get category metrics for a year
+*ClarivateWosJournalsJsClient.JournalsApi* | [**journalsGet**](docs/JournalsApi.md#journalsGet) | **GET** /journals | Search and filter across JCR Journals
+*ClarivateWosJournalsJsClient.JournalsApi* | [**journalsIdCitedYearYearGet**](docs/JournalsApi.md#journalsIdCitedYearYearGet) | **GET** /journals/{id}/cited/year/{year} | Get journals that cite the journal for the JCR year
+*ClarivateWosJournalsJsClient.JournalsApi* | [**journalsIdCitingYearYearGet**](docs/JournalsApi.md#journalsIdCitingYearYearGet) | **GET** /journals/{id}/citing/year/{year} | Get journals that were cited by the journal for the JCR year
+*ClarivateWosJournalsJsClient.JournalsApi* | [**journalsIdGet**](docs/JournalsApi.md#journalsIdGet) | **GET** /journals/{id} | Get journal by id
+*ClarivateWosJournalsJsClient.JournalsApi* | [**journalsIdHistoryGet**](docs/JournalsApi.md#journalsIdHistoryGet) | **GET** /journals/{id}/history | Get journal history by id
+*ClarivateWosJournalsJsClient.JournalsApi* | [**journalsIdReportsYearYearGet**](docs/JournalsApi.md#journalsIdReportsYearYearGet) | **GET** /journals/{id}/reports/year/{year} | Get journal metrics for a year
 
 
 ## Documentation for Models
 
- - [WebOfScienceJournalsApi.CategoriesCited](docs/CategoriesCited.md)
- - [WebOfScienceJournalsApi.CategoriesCitedHits](docs/CategoriesCitedHits.md)
- - [WebOfScienceJournalsApi.CategoriesCitedJournal](docs/CategoriesCitedJournal.md)
- - [WebOfScienceJournalsApi.CategoriesCiting](docs/CategoriesCiting.md)
- - [WebOfScienceJournalsApi.CategoriesCitingHits](docs/CategoriesCitingHits.md)
- - [WebOfScienceJournalsApi.CategoriesCitingJournal](docs/CategoriesCitingJournal.md)
- - [WebOfScienceJournalsApi.CategoryData](docs/CategoryData.md)
- - [WebOfScienceJournalsApi.CategoryList](docs/CategoryList.md)
- - [WebOfScienceJournalsApi.CategoryListRecord](docs/CategoryListRecord.md)
- - [WebOfScienceJournalsApi.CategoryRecord](docs/CategoryRecord.md)
- - [WebOfScienceJournalsApi.CategoryReports](docs/CategoryReports.md)
- - [WebOfScienceJournalsApi.CategoryReportsJournals](docs/CategoryReportsJournals.md)
- - [WebOfScienceJournalsApi.CategoryReportsSourceData](docs/CategoryReportsSourceData.md)
- - [WebOfScienceJournalsApi.CategoryReportsSourceDataArticles](docs/CategoryReportsSourceDataArticles.md)
- - [WebOfScienceJournalsApi.CategoryReportsSourceDataReviews](docs/CategoryReportsSourceDataReviews.md)
- - [WebOfScienceJournalsApi.CitedData](docs/CitedData.md)
- - [WebOfScienceJournalsApi.CitingData](docs/CitingData.md)
- - [WebOfScienceJournalsApi.Frequency](docs/Frequency.md)
- - [WebOfScienceJournalsApi.HalfLife](docs/HalfLife.md)
- - [WebOfScienceJournalsApi.Immediacy](docs/Immediacy.md)
- - [WebOfScienceJournalsApi.ImpactMetrics](docs/ImpactMetrics.md)
- - [WebOfScienceJournalsApi.InfluenceMetrics](docs/InfluenceMetrics.md)
- - [WebOfScienceJournalsApi.InfluenceMetricsEigenFactor](docs/InfluenceMetricsEigenFactor.md)
- - [WebOfScienceJournalsApi.Jif](docs/Jif.md)
- - [WebOfScienceJournalsApi.JifAggregate](docs/JifAggregate.md)
- - [WebOfScienceJournalsApi.JournalData](docs/JournalData.md)
- - [WebOfScienceJournalsApi.JournalList](docs/JournalList.md)
- - [WebOfScienceJournalsApi.JournalListRecord](docs/JournalListRecord.md)
- - [WebOfScienceJournalsApi.JournalListRecordJournalCitationReports](docs/JournalListRecordJournalCitationReports.md)
- - [WebOfScienceJournalsApi.JournalListRecordMetrics](docs/JournalListRecordMetrics.md)
- - [WebOfScienceJournalsApi.JournalListRecordMetricsImpactMetrics](docs/JournalListRecordMetricsImpactMetrics.md)
- - [WebOfScienceJournalsApi.JournalListRecordMetricsSourceMetrics](docs/JournalListRecordMetricsSourceMetrics.md)
- - [WebOfScienceJournalsApi.JournalListRecordRanks](docs/JournalListRecordRanks.md)
- - [WebOfScienceJournalsApi.JournalListRecordRanksJif](docs/JournalListRecordRanksJif.md)
- - [WebOfScienceJournalsApi.JournalProfile](docs/JournalProfile.md)
- - [WebOfScienceJournalsApi.JournalProfileCitableItems](docs/JournalProfileCitableItems.md)
- - [WebOfScienceJournalsApi.JournalProfileCitations](docs/JournalProfileCitations.md)
- - [WebOfScienceJournalsApi.JournalProfileOccurrenceCountries](docs/JournalProfileOccurrenceCountries.md)
- - [WebOfScienceJournalsApi.JournalProfileOccurrenceOrganizations](docs/JournalProfileOccurrenceOrganizations.md)
- - [WebOfScienceJournalsApi.JournalRecord](docs/JournalRecord.md)
- - [WebOfScienceJournalsApi.JournalReports](docs/JournalReports.md)
- - [WebOfScienceJournalsApi.JournalReportsJournal](docs/JournalReportsJournal.md)
- - [WebOfScienceJournalsApi.JournalReportsMetrics](docs/JournalReportsMetrics.md)
- - [WebOfScienceJournalsApi.JournalsCited](docs/JournalsCited.md)
- - [WebOfScienceJournalsApi.JournalsCitedHits](docs/JournalsCitedHits.md)
- - [WebOfScienceJournalsApi.JournalsCitesJournal](docs/JournalsCitesJournal.md)
- - [WebOfScienceJournalsApi.JournalsCiting](docs/JournalsCiting.md)
- - [WebOfScienceJournalsApi.JournalsCitingHits](docs/JournalsCitingHits.md)
- - [WebOfScienceJournalsApi.Metadata](docs/Metadata.md)
- - [WebOfScienceJournalsApi.OpenAccess](docs/OpenAccess.md)
- - [WebOfScienceJournalsApi.Publisher](docs/Publisher.md)
- - [WebOfScienceJournalsApi.Ranks](docs/Ranks.md)
- - [WebOfScienceJournalsApi.RanksEsiCitations](docs/RanksEsiCitations.md)
- - [WebOfScienceJournalsApi.RanksJif](docs/RanksJif.md)
- - [WebOfScienceJournalsApi.SearchMatch](docs/SearchMatch.md)
- - [WebOfScienceJournalsApi.SourceData](docs/SourceData.md)
- - [WebOfScienceJournalsApi.SourceDataArticles](docs/SourceDataArticles.md)
- - [WebOfScienceJournalsApi.SourceMetrics](docs/SourceMetrics.md)
- - [WebOfScienceJournalsApi.SourceMetricsCitableItems](docs/SourceMetricsCitableItems.md)
+ - [ClarivateWosJournalsJsClient.CategoriesCited](docs/CategoriesCited.md)
+ - [ClarivateWosJournalsJsClient.CategoriesCitedHits](docs/CategoriesCitedHits.md)
+ - [ClarivateWosJournalsJsClient.CategoriesCitedJournal](docs/CategoriesCitedJournal.md)
+ - [ClarivateWosJournalsJsClient.CategoriesCiting](docs/CategoriesCiting.md)
+ - [ClarivateWosJournalsJsClient.CategoriesCitingHits](docs/CategoriesCitingHits.md)
+ - [ClarivateWosJournalsJsClient.CategoriesCitingJournal](docs/CategoriesCitingJournal.md)
+ - [ClarivateWosJournalsJsClient.CategoryData](docs/CategoryData.md)
+ - [ClarivateWosJournalsJsClient.CategoryList](docs/CategoryList.md)
+ - [ClarivateWosJournalsJsClient.CategoryListRecord](docs/CategoryListRecord.md)
+ - [ClarivateWosJournalsJsClient.CategoryRecord](docs/CategoryRecord.md)
+ - [ClarivateWosJournalsJsClient.CategoryReports](docs/CategoryReports.md)
+ - [ClarivateWosJournalsJsClient.CategoryReportsJournals](docs/CategoryReportsJournals.md)
+ - [ClarivateWosJournalsJsClient.CategoryReportsSourceData](docs/CategoryReportsSourceData.md)
+ - [ClarivateWosJournalsJsClient.CategoryReportsSourceDataArticles](docs/CategoryReportsSourceDataArticles.md)
+ - [ClarivateWosJournalsJsClient.CategoryReportsSourceDataReviews](docs/CategoryReportsSourceDataReviews.md)
+ - [ClarivateWosJournalsJsClient.CitedData](docs/CitedData.md)
+ - [ClarivateWosJournalsJsClient.CitingData](docs/CitingData.md)
+ - [ClarivateWosJournalsJsClient.Frequency](docs/Frequency.md)
+ - [ClarivateWosJournalsJsClient.HalfLife](docs/HalfLife.md)
+ - [ClarivateWosJournalsJsClient.Immediacy](docs/Immediacy.md)
+ - [ClarivateWosJournalsJsClient.ImpactMetrics](docs/ImpactMetrics.md)
+ - [ClarivateWosJournalsJsClient.InfluenceMetrics](docs/InfluenceMetrics.md)
+ - [ClarivateWosJournalsJsClient.InfluenceMetricsEigenFactor](docs/InfluenceMetricsEigenFactor.md)
+ - [ClarivateWosJournalsJsClient.Jif](docs/Jif.md)
+ - [ClarivateWosJournalsJsClient.JifAggregate](docs/JifAggregate.md)
+ - [ClarivateWosJournalsJsClient.JournalData](docs/JournalData.md)
+ - [ClarivateWosJournalsJsClient.JournalHistoryRecord](docs/JournalHistoryRecord.md)
+ - [ClarivateWosJournalsJsClient.JournalHistoryRecordIsoTitle](docs/JournalHistoryRecordIsoTitle.md)
+ - [ClarivateWosJournalsJsClient.JournalHistoryRecordIssn](docs/JournalHistoryRecordIssn.md)
+ - [ClarivateWosJournalsJsClient.JournalHistoryRecordName](docs/JournalHistoryRecordName.md)
+ - [ClarivateWosJournalsJsClient.JournalHistoryRecordPublisher](docs/JournalHistoryRecordPublisher.md)
+ - [ClarivateWosJournalsJsClient.JournalHistoryRecordPublisher1](docs/JournalHistoryRecordPublisher1.md)
+ - [ClarivateWosJournalsJsClient.JournalHistoryRecordYear](docs/JournalHistoryRecordYear.md)
+ - [ClarivateWosJournalsJsClient.JournalHistoryRecordYear1](docs/JournalHistoryRecordYear1.md)
+ - [ClarivateWosJournalsJsClient.JournalHistoryRecordYear2](docs/JournalHistoryRecordYear2.md)
+ - [ClarivateWosJournalsJsClient.JournalHistoryRecordYear3](docs/JournalHistoryRecordYear3.md)
+ - [ClarivateWosJournalsJsClient.JournalList](docs/JournalList.md)
+ - [ClarivateWosJournalsJsClient.JournalListRecord](docs/JournalListRecord.md)
+ - [ClarivateWosJournalsJsClient.JournalListRecordJournalCitationReports](docs/JournalListRecordJournalCitationReports.md)
+ - [ClarivateWosJournalsJsClient.JournalListRecordMetrics](docs/JournalListRecordMetrics.md)
+ - [ClarivateWosJournalsJsClient.JournalListRecordMetricsImpactMetrics](docs/JournalListRecordMetricsImpactMetrics.md)
+ - [ClarivateWosJournalsJsClient.JournalListRecordMetricsSourceMetrics](docs/JournalListRecordMetricsSourceMetrics.md)
+ - [ClarivateWosJournalsJsClient.JournalListRecordRanks](docs/JournalListRecordRanks.md)
+ - [ClarivateWosJournalsJsClient.JournalListRecordRanksJci](docs/JournalListRecordRanksJci.md)
+ - [ClarivateWosJournalsJsClient.JournalListRecordRanksJif](docs/JournalListRecordRanksJif.md)
+ - [ClarivateWosJournalsJsClient.JournalProfile](docs/JournalProfile.md)
+ - [ClarivateWosJournalsJsClient.JournalProfileCitableItems](docs/JournalProfileCitableItems.md)
+ - [ClarivateWosJournalsJsClient.JournalProfileCitations](docs/JournalProfileCitations.md)
+ - [ClarivateWosJournalsJsClient.JournalProfileOccurrenceCountries](docs/JournalProfileOccurrenceCountries.md)
+ - [ClarivateWosJournalsJsClient.JournalProfileOccurrenceOrganizations](docs/JournalProfileOccurrenceOrganizations.md)
+ - [ClarivateWosJournalsJsClient.JournalRecord](docs/JournalRecord.md)
+ - [ClarivateWosJournalsJsClient.JournalReports](docs/JournalReports.md)
+ - [ClarivateWosJournalsJsClient.JournalReportsJournal](docs/JournalReportsJournal.md)
+ - [ClarivateWosJournalsJsClient.JournalReportsMetrics](docs/JournalReportsMetrics.md)
+ - [ClarivateWosJournalsJsClient.JournalsCited](docs/JournalsCited.md)
+ - [ClarivateWosJournalsJsClient.JournalsCitedHits](docs/JournalsCitedHits.md)
+ - [ClarivateWosJournalsJsClient.JournalsCitesJournal](docs/JournalsCitesJournal.md)
+ - [ClarivateWosJournalsJsClient.JournalsCiting](docs/JournalsCiting.md)
+ - [ClarivateWosJournalsJsClient.JournalsCitingHits](docs/JournalsCitingHits.md)
+ - [ClarivateWosJournalsJsClient.Metadata](docs/Metadata.md)
+ - [ClarivateWosJournalsJsClient.OpenAccess](docs/OpenAccess.md)
+ - [ClarivateWosJournalsJsClient.Publisher](docs/Publisher.md)
+ - [ClarivateWosJournalsJsClient.RankQuartileData](docs/RankQuartileData.md)
+ - [ClarivateWosJournalsJsClient.Ranks](docs/Ranks.md)
+ - [ClarivateWosJournalsJsClient.RanksEsiCitations](docs/RanksEsiCitations.md)
+ - [ClarivateWosJournalsJsClient.RanksJif](docs/RanksJif.md)
+ - [ClarivateWosJournalsJsClient.SearchMatch](docs/SearchMatch.md)
+ - [ClarivateWosJournalsJsClient.SourceData](docs/SourceData.md)
+ - [ClarivateWosJournalsJsClient.SourceDataArticles](docs/SourceDataArticles.md)
+ - [ClarivateWosJournalsJsClient.SourceMetrics](docs/SourceMetrics.md)
+ - [ClarivateWosJournalsJsClient.SourceMetricsCitableItems](docs/SourceMetricsCitableItems.md)
 
 
-## Licence
-MIT
+## Documentation for Authorization
+
+All endpoints do not require authorization.
